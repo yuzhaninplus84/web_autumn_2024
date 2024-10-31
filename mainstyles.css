@@ -17,8 +17,8 @@ body {
 }
 
 header {
-    background-color:  #4CAF50;
-    /*background: #ffffff url("bg.webp") no-repeat top center;*/
+    background-color: #4CAF50 ;
+    background: #4CAF50 url("bg1.jpg") no-repeat top center;
     color: white;
     padding: 20px 0;
 }

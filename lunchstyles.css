@@ -91,7 +91,7 @@ input, select, textarea {
     border-radius: 4px;
 }
 
-button {
+/* button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -102,6 +102,25 @@ button {
 
 button:hover {
     background-color: #0056b3;
+} */
+
+.filter {
+    margin: 0 10px;
+    font-size: 18px;
+    color: #6b6b6b;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.filter:hover {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.filter.active {
+    color: #4caf50;
+    font-weight: bold;
 }
 
 /* Адаптивность */

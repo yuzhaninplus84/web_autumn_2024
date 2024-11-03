@@ -228,3 +228,93 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+//Lab6
+document.addEventListener('DOMContentLoaded', function() {
+    const orderForm = document.querySelector('.order-form form');
+    
+    // Possible combos
+    const combos = [
+        { soup: true, main: true, salad: true, drink: true }, // Combo 1
+        { soup: true, main: true, drink: true },              // Combo 2
+        { soup: true, salad: true, drink: true },             // Combo 3
+        { main: true, salad: true, drink: true },             // Combo 4
+        { main: true, drink: true }                            // Combo 5
+    ];
+    
+    orderForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission to validate first
+
+        const selectedDishes = {
+            soup: document.querySelector('#soups div:not([style*="display: none"])') ? true : false,
+            salad: document.querySelector('#salads div:not([style*="display: none"])') ? true : false,
+            main: document.querySelector('#mains div:not([style*="display: none"])') ? true : false,
+            drink: document.querySelector('#drinks div:not([style*="display: none"])') ? true : false,
+            dessert: document.querySelector('#desserts div:not([style*="display: none"])') ? true : false
+        };
+
+        const validationMessage = validateOrder(selectedDishes);
+
+        if (validationMessage) {
+            showNotification(validationMessage);
+        } else {
+            // If valid, submit the form
+            orderForm.submit();
+        }
+    });
+
+    function validateOrder(dishes) {
+        if (!dishes.soup && !dishes.main && !dishes.salad && !dishes.drink && !dishes.dessert) {
+            return 'Ничего не выбрано. Выберите блюда для заказа';
+        }
+        if (dishes.soup && !dishes.main && !dishes.salad) {
+            return 'Выберите главное блюдо или салат/стартер';
+        }
+        if (dishes.salad && !dishes.soup && !dishes.main) {
+            return 'Выберите суп или главное блюдо';
+        }
+        if ((dishes.drink || dishes.dessert) && !dishes.main) {
+            return 'Выберите главное блюдо';
+        }
+        if ((dishes.soup || dishes.main || dishes.salad) && !dishes.drink) {
+            return 'Выберите напиток';
+        }
+        return null;
+    }
+
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+            <p>${message}</p>
+            <button class="close-notification">Окей <span>👌</span></button>
+        `;
+        document.body.appendChild(notification);
+        centerNotification(notification);
+
+        const closeButton = notification.querySelector('.close-notification');
+        closeButton.addEventListener('mouseover', () => {
+            closeButton.style.backgroundColor = 'red';
+            closeButton.style.color = 'white';
+        });
+        closeButton.addEventListener('mouseout', () => {
+            closeButton.style.backgroundColor = '';
+            closeButton.style.color = '';
+        });
+        closeButton.addEventListener('click', () => {
+            notification.remove();
+        });
+    }
+
+    function centerNotification(notification) {
+        notification.style.position = 'fixed';
+        notification.style.top = '50%';
+        notification.style.left = '50%';
+        notification.style.transform = 'translate(-50%, -50%)';
+        notification.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+        notification.style.padding = '20px';
+        notification.style.border = '1px solid #ccc';
+        notification.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
+        notification.style.zIndex = '1000';
+    }
+});

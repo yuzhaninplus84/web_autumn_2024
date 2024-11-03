@@ -123,6 +123,83 @@ button:hover {
     font-weight: bold;
 }
 
+ /* Lab6 */
+ .lunch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.lunch-options{
+    background-color: var(--cards-color);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem 0.5rem;
+    transition: 0.2s ease;
+    filter: drop-shadow(0.7rem 1rem 1rem rgba(0, 0, 0, 0.1));
+
+}
+
+.lunch-options:hover {
+    border-color: var(--cards-color-hover);
+    transition: 0.5s ease;
+    filter: drop-shadow(0 0 1rem var(--cards-color-hover));
+    transform: scale(101%);
+}
+
+.lunch-options div{
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.lunch-options img {
+    width: 4rem;
+    transition: transform 0.3s;
+}
+
+.lunch-options img:hover {
+    transform: translateY(-10px) scale(1.1);
+}
+
+.dessert-info {
+    font-size: 0.9em;
+}
+
+.notification {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 5px;
+    z-index: 1000;
+    text-align: center;
+}
+.notification p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.notification button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
 /* Адаптивность */
 @media (max-width: 800px) {
     section > div {

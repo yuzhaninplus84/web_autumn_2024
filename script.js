@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (dishes.salad && !dishes.soup && !dishes.main) {
             return 'Выберите суп или главное блюдо';
         }
-        if ((dishes.drink || dishes.dessert) && !dishes.main) {
+        if ((dishes.drink || dishes.dessert) && !dishes.main&& !dishes.soup) {
             return 'Выберите главное блюдо';
         }
         if ((dishes.soup || dishes.main || dishes.salad) && !dishes.drink) {
